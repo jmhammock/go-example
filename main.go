@@ -31,7 +31,7 @@ func newEnvelope() *envelope {
 	}
 }
 
-// Example of a request operating on data synchronously
+// Example of handling a request synchronously
 func noWorkerHandler(w http.ResponseWriter, r *http.Request) {
 	now := time.Now()
 	e := newEnvelope()
@@ -81,6 +81,7 @@ func worker(workerId int, jobs <-chan string, results chan<- string) {
 	}
 }
 
+// Example of handling a request with workers and channels (async)
 func workerHandler(w http.ResponseWriter, r *http.Request) {
 	now := time.Now()
 	e := newEnvelope()
